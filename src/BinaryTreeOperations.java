@@ -12,8 +12,8 @@ public class BinaryTreeOperations{
     public BinaryTreeOperations(){
         //Queue Enqueue.
         rootNode = null;
-        rootNode = insertTreeNodes(rootNode, 7);
-        insertTreeNodes(rootNode, 4);
+        rootNode = insertTreeNodes(rootNode, 7); //root node
+        insertTreeNodes(rootNode, 4); // inserts the next following elements in BST ordered.
         insertTreeNodes(rootNode, 1);
         insertTreeNodes(rootNode, 8);
         insertTreeNodes(rootNode, 10);
@@ -23,7 +23,27 @@ public class BinaryTreeOperations{
 
         breadthFirstSearch(rootNode);
 
+        inOrderTraversal(rootNode);
     }
+
+    public void inOrderTraversal(BinaryNode root){
+        if(root == null)
+            return;
+        else{
+            inOrderTraversal(root.left);
+            root.displayNode();
+            inOrderTraversal(root.right);
+        }
+    }
+
+    //Recursively, adds a node inside a tree using binary search tree concept.
+
+    /**
+     * BST -> puts the small number on the left subtrees from the root node and puts the large numbers on the right subtree.
+     * @param root -> root node of the tree.
+     * @param data -> data that's to be added in the tree.
+     * @return -> returns BinaryNode which contains the info of data, left and right subtree's location.
+     */
 
     public BinaryNode insertTreeNodes(BinaryNode root, int data){
 
@@ -35,10 +55,15 @@ public class BinaryTreeOperations{
             root.left = insertTreeNodes(root.left, data);
         else
             root.right = insertTreeNodes(root.right, data);
-        System.out.println(root + " " + root.left + " " + root.right);
+        /*System.out.println(root + " " + root.left + " " + root.right);*/
         return root;
     }
 
+    /**
+     * Implemented breadth-first search/traversal.
+     * Prints the output of tree in a level ordered manner.
+     * @param newNode -> takes input of a tree's root node.
+     */
     public void breadthFirstSearch(BinaryNode newNode){
         treeQ.add(newNode);
         BinaryNode temp;
@@ -46,7 +71,8 @@ public class BinaryTreeOperations{
         while(!treeQ.isEmpty()){
             temp = treeQ.remove();
 
-            System.out.print(temp.displayNode() + ", ");
+            temp.displayNode();
+            System.out.println("");
 
             if(temp.left != null)
                 treeQ.add(temp.left);

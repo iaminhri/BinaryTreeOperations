@@ -15,8 +15,8 @@ class BinaryNode {
         this.right = right;
     }
 
-    public int displayNode(){
-        return this.info;
+    public void displayNode(){
+        System.out.print(this.info);
     }
 
     public String toString(){
